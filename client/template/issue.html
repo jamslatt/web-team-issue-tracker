@@ -1,0 +1,98 @@
+<template name="new_issue">
+        <section class="section">
+            <div class="container">
+                <h1 class="title">New Issue</h1>
+                <form>
+                    <div class="field">
+                        <label class="label">Title</label>
+                        <div class="control">
+                            <input class="input" id="issue_title" type="text" placeholder="My Navbar is broken!">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Issue Summary (Markdown Supported)</label>
+                        <div class="control">
+                            <textarea class="textarea" id="issue_content" placeholder="My stuff is no work work"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="button is-success is-large" style="width: 100%">Submit Issue</button>
+                </form>
+
+            </div>
+        </section>
+
+</template>
+
+<template name="issue_detail">
+    <section class="section">
+        <div class="container">
+            <p style="margin-bottom: 5px;" class="title is-4">{{title}}</p><small>{{name}}&nbsp;/&nbsp;{{date}}&nbsp;/&nbsp;<span class="tag">{{ status }}</span></small>
+            <hr />
+            <div class="content">
+                {{#markdown}}{{content}}{{/markdown}}
+            </div>
+        </div>
+        <div class="container">
+            <hr/>
+            <nav class="level">
+                <div class="level-left">
+                    <div class="level-item">
+                        <div class="tags has-addons" style="cursor: pointer;">
+                            <span class="tag">Reply</span>
+                            <span class="tag is-primary"><i class="fa fa-reply" style="font-size: 10px;" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="level-right">
+                    <div class="level-item">
+                        <div class="tags has-addons issue_open" style="cursor: pointer;">
+                            <span class="tag">Open</span>
+                            <span class="tag is-success"><i class="fa fa-check" style="font-size: 10px;" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                    <div class="level-item">
+                        <div class="tags has-addons issue_close" style="cursor: pointer;">
+                            <span class="tag">Close Issue</span>
+                            <span class="tag is-info"><i class="fa fa-lock" style="font-size: 10px;" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                    <div class="level-item">
+                        <div class="tags has-addons issue_del" style="cursor: pointer;">
+                            <span class="tag">Delete</span>
+                            <span class="tag is-danger"><i class="fa fa-close" style="font-size: 10px;" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <hr/>
+            {{#each  reply_stream}}
+            <div class="box">
+                <article class="media">
+                    <div class="media-left">
+                        <figure class="image is-64x64">
+                            <img style="border-radius: 50%" src="{{ avatar }}" alt="Image">
+                        </figure>
+                    </div>
+                    <div class="media-content">
+                        <div class="content">
+                            <p>
+                                <strong>{{ name }}</strong> <small>{{date}}</small>
+                                <br>
+                                {{#markdown}}{{content}}{{/markdown}}
+                            </p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            {{/each}}
+            <hr/>
+            <div class="field">
+                <label class="label">Reply:</label>
+                <div class="control">
+                    <textarea class="textarea" id="issue_reply" placeholder="My stuff is no work work"></textarea>
+                </div>
+            </div>
+            <button class="button is-primary init_reply" style="width: 100%">Reply</button>
+        </div>
+    </section>
+</template>
