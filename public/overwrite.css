@@ -1,0 +1,25 @@
+.footer {
+    padding: 3rem 1.5rem 3rem !important;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+.avatar {
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+}
+.is-small {
+    padding: .8rem 1.5rem;
+}
+.read {
+    font-size: 24px;
+    vertical-align: middle;
+    position: relative;
+    top: 8px;
+
+}
+.fixH:hover {
+    color: #029983;
+}

@@ -1,0 +1,43 @@
+<template name="base">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Digital Design Issue Manager</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.0/css/bulma.min.css">
+        <link rel="stylesheet" href="overwrite.css">
+    </head>
+    <body>
+        {{#if currentUser }}
+        <section class="section is-small">
+            <div class="container">
+                <nav class="breadcrumb" aria-label="breadcrumbs">
+                    <ul>
+                        <li><a href="#"><img src="{{ avatar }}" alt="User Avatar" class="avatar" />&nbsp;{{ name }}</a></li>
+                        <li><a href="#">Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+        {{/if}}
+        <section class="hero is-info is-bold">
+            <div class="hero-body">
+                <div class="container is-widescreen">
+                    <h1 class="title">
+                        Digital Design Issue Manager
+                    </h1>
+                </div>
+            </div>
+        </section>
+        {{> home}}
+        <footer class="footer">
+            <div class="container">
+                <div class="content has-text-centered">
+                    <p>
+                        <strong>Hosted</strong> by <a href="http://jgthms.com">James Slattery</a>.
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </body>
+</template>
