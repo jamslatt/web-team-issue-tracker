@@ -6,27 +6,35 @@ Template.new_issue.events({
         let owner = Meteor.userId();
         let name = Meteor.user().services.google.name;
         let date = moment().format("MMM Do YY");
+        let createdAt = new Date();
 
         issues.insert({
             title: title,
             content: content,
             owner: owner,
             date: date,
-            name: name
+            name: name,
+            createdAt: createdAt
         });
         Router.go('/');
     }
 })
 
-Template.stream.helpers({
+Template.stream_open.helpers({
     feed_open: function () {
-        return issues.find({ status: "Open" });
-    },
+        return issues.find({ status: "Open" }, { sort: { createdAt: -1 } });
+    }
+})
+
+Template.stream_closed.helpers({
     feed_closed: function () {
-        return issues.find({ status: "Closed" });
+        return issues.find({ status: "Closed" }, { sort: { createdAt: -1 } });
     },
-    feed: function () {
-        return issues.find();
+})
+
+Template.stream_all.helpers({
+    feed_all: function () {
+        return issues.find({},{ sort: { createdAt: -1 } });
     }
 })
 
@@ -35,7 +43,7 @@ Template.stream.helpers({
 Template.issue_detail.helpers({
     reply_stream: function () {
         return replies.find({ issueId: this._id });
-    }
+    },
 })
 
 Template.issue_detail.events({
@@ -50,6 +58,9 @@ Template.issue_detail.events({
             }
         });
         Router.go('/');
+    },
+    'click .reply_del': function () {
+        replies.remove(this._id);
     },
     'click .init_reply': function () {
         event.preventDefault();
@@ -66,7 +77,15 @@ Template.issue_detail.events({
             date: date,
             avatar: avatar,
             content: content
-        })
+        });
+
+        // notify owner
+        let op_owner = this.owner;
+        notifications.insert({
+            forId: op_owner,
+            issueId: issueId,
+            message: name + " has replied to your post."
+        });
         $('#issue_reply').val("");
     }
 })

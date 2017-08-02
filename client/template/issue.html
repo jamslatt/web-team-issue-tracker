@@ -69,7 +69,7 @@
             <div class="box">
                 <article class="media">
                     <div class="media-left">
-                        <figure class="image is-64x64">
+                        <figure class="image is-48x48">
                             <img style="border-radius: 50%" src="{{ avatar }}" alt="Image">
                         </figure>
                     </div>
@@ -82,8 +82,16 @@
                             </p>
                         </div>
                     </div>
+                    <div class="media-right">
+                        <div class="tags has-addons reply_del" style="cursor: pointer;">
+                            <span class="tag">Delete</span>
+                            <span class="tag is-danger"><i class="fa fa-close" style="font-size: 10px;" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
                 </article>
             </div>
+            {{else}}
+            <p class="has-text-centered">No replies here :)</p>
             {{/each}}
             <hr/>
             <div class="field">

@@ -1,4 +1,4 @@
-<template name="stream">
+<template name="stream_open">
     <section class="section">
         <div class="container">
             {{#each feed_open }}
@@ -21,6 +21,62 @@
             </div>
                 </a>
             <br/>
+            {{/each}}
+        </div>
+    </section>
+</template>
+
+<template name="stream_closed">
+    <section class="section">
+        <div class="container">
+            {{#each feed_closed }}
+            <a href="/issue/{{ _id}}">
+                <div class="box">
+                    <article class="media is-10">
+                        <div class="media-left">
+                            <figure class="image has-text-centered">
+                                <i class="fa fa-question-circle-o" style="font-size: 24px;color: #00d1b2;" aria-hidden="true"></i>
+                            </figure>
+                        </div>
+                        <div class="media-content">
+                            <div class="content" style="vertical-align: middle;">
+                                <p>
+                                    <strong>{{ title }}</strong> <small>{{ name }}</small> &middot; <small>{{ date }}&nbsp;<span class="tag">{{ status }}</span></small>
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </a>
+            <br />
+            {{/each}}
+        </div>
+    </section>
+</template>
+
+<template name="stream_all">
+    <section class="section">
+        <div class="container">
+            {{#each feed_all }}
+            <a href="/issue/{{ _id}}">
+                <div class="box">
+                    <article class="media is-10">
+                        <div class="media-left">
+                            <figure class="image has-text-centered">
+                                <i class="fa fa-question-circle-o" style="font-size: 24px;color: #00d1b2;" aria-hidden="true"></i>
+                            </figure>
+                        </div>
+                        <div class="media-content">
+                            <div class="content" style="vertical-align: middle;">
+                                <p>
+                                    <strong>{{ title }}</strong> <small>{{ name }}</small> &middot; <small>{{ date }}&nbsp;<span class="tag">{{ status }}</span></small>
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </a>
+            <br />
             {{/each}}
         </div>
     </section>
