@@ -44,6 +44,9 @@ Template.issue_detail.helpers({
     reply_stream: function () {
         return replies.find({ issueId: this._id });
     },
+    admin: function () {
+        return Roles.userIsInRole(Meteor.user(), ['admin']);
+    }
 })
 
 Template.issue_detail.events({
@@ -67,9 +70,10 @@ Template.issue_detail.events({
 
         let issueId = this._id;
         let name = Meteor.user().services.google.name;
-        let date = moment().format("MMM Do YY");
+        let date = moment().format('MMMM Do YYYY, h:mm a');
         let content = $('#issue_reply').val();
         let avatar = Meteor.user().services.google.picture;
+
 
         replies.insert({
             issueId: issueId,

@@ -23,10 +23,20 @@
                             <div class="dropdown-menu" id="dropdown-menu4" role="menu">
                                 <div class="dropdown-content">
                                     {{#each notifications}}
-                                    <a href="/issue/{{issueId}}" class="dropdown-item">
+                                    <a href="/issue/{{issueId}}" class="dropdown-item notif">
                                         {{ message }}
                                     </a>
+                                    {{ else }}
+                                    <a href="" class="dropdown-item notif">
+                                        <strong>no notifications avaiable</strong>
+                                    </a>
                                     {{/each}}
+                                    {{#if notif_exist}}
+                                    <hr class="navbar-divider">
+                                    <a href="" class="dropdown-item notif">
+                                        <strong>View Read Notifications</strong>
+                                    </a>
+                                    {{/if}}
                                 </div>
                             </div>
                         </div>
@@ -77,10 +87,20 @@
                             <div class="dropdown-menu" id="dropdown-menu4" role="menu">
                                 <div class="dropdown-content">
                                     {{#each notifications}}
-                                    <a href="/issue/{{issueId}}" class="dropdown-item">
+                                    <a href="/issue/{{issueId}}" class="dropdown-item notif">
                                         {{ message }}
                                     </a>
+                                    {{ else }}
+                                    <a href="" class="dropdown-item notif">
+                                        <strong>no notifications avaiable</strong>
+                                    </a>
                                     {{/each}}
+                                    {{#if notif_exist}}
+                                    <hr class="navbar-divider">
+                                    <a href="" class="dropdown-item notif">
+                                        <strong>View Read Notifications</strong>
+                                    </a>
+                                    {{/if}}
                                 </div>
                             </div>
                         </div>
@@ -131,10 +151,20 @@
                             <div class="dropdown-menu" id="dropdown-menu4" role="menu">
                                 <div class="dropdown-content">
                                     {{#each notifications}}
-                                    <a href="/issue/{{issueId}}" class="dropdown-item">
+                                    <a href="/issue/{{issueId}}" class="dropdown-item notif">
                                         {{ message }}
                                     </a>
+                                    {{ else }}
+                                    <a href="" class="dropdown-item notif">
+                                        <strong>no notifications avaiable</strong>
+                                    </a>
                                     {{/each}}
+                                    {{#if notif_exist}}
+                                    <hr class="navbar-divider">
+                                    <a href="" class="dropdown-item notif">
+                                        <strong>View Read Notifications</strong>
+                                    </a>
+                                    {{/if}}
                                 </div>
                             </div>
                         </div>

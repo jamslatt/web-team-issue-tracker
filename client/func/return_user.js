@@ -5,4 +5,7 @@ Template.base.helpers({
      name: function () {
          return Meteor.user().services.google.given_name;
      },
+     admin: function () {
+         return Roles.userIsInRole(Meteor.user(), ['admin']);
+     }
 });

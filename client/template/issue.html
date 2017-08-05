@@ -26,23 +26,16 @@
 <template name="issue_detail">
     <section class="section">
         <div class="container">
-            <p style="margin-bottom: 5px;" class="title is-4">{{title}}</p><small>{{name}}&nbsp;/&nbsp;{{date}}&nbsp;/&nbsp;<span class="tag">{{ status }}</span></small>
+            <p style="margin-bottom: 5px;" class="title is-4">{{title}}</p><small>{{name}}&nbsp;{{#if admin}}<span class="tag is-danger is-rounded">Admin</span>&nbsp;{{/if}}/&nbsp;{{date}}&nbsp;/&nbsp;<span class="tag">{{ status }}</span></small>
             <hr />
             <div class="content">
                 {{#markdown}}{{content}}{{/markdown}}
             </div>
         </div>
         <div class="container">
+            {{#if admin}}
             <hr/>
             <nav class="level">
-                <div class="level-left">
-                    <div class="level-item">
-                        <div class="tags has-addons" style="cursor: pointer;">
-                            <span class="tag">Reply</span>
-                            <span class="tag is-primary"><i class="fa fa-reply" style="font-size: 10px;" aria-hidden="true"></i></span>
-                        </div>
-                    </div>
-                </div>
                 <div class="level-right">
                     <div class="level-item">
                         <div class="tags has-addons issue_open" style="cursor: pointer;">
@@ -64,6 +57,7 @@
                     </div>
                 </div>
             </nav>
+            {{/if}}
             <hr/>
             {{#each  reply_stream}}
             <div class="box">
@@ -76,31 +70,35 @@
                     <div class="media-content">
                         <div class="content">
                             <p>
-                                <strong>{{ name }}</strong> <small>{{date}}</small>
+                                <strong>{{ name }}</strong>{{#if admin}} <span class="tag is-danger is-rounded">Admin</span>{{/if}} <small>{{date}}</small>
                                 <br>
                                 {{#markdown}}{{content}}{{/markdown}}
                             </p>
                         </div>
                     </div>
+                    {{#if admin}}
                     <div class="media-right">
                         <div class="tags has-addons reply_del" style="cursor: pointer;">
                             <span class="tag">Delete</span>
                             <span class="tag is-danger"><i class="fa fa-close" style="font-size: 10px;" aria-hidden="true"></i></span>
                         </div>
                     </div>
+                    {{/if}}
                 </article>
             </div>
             {{else}}
             <p class="has-text-centered">No replies here :)</p>
             {{/each}}
             <hr/>
+            <form>
             <div class="field">
                 <label class="label">Reply:</label>
                 <div class="control">
-                    <textarea class="textarea" id="issue_reply" placeholder="My stuff is no work work"></textarea>
+                    <textarea class="textarea" id="issue_reply" placeholder="My stuff is no work work" required></textarea>
                 </div>
             </div>
-            <button class="button is-primary init_reply" style="width: 100%">Reply</button>
+            <button class="button is-primary init_reply" type="submit" style="width: 100%">Reply</button>
+                </form>
         </div>
     </section>
 </template>
