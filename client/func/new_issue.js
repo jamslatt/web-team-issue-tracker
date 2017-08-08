@@ -44,8 +44,19 @@ Template.issue_detail.helpers({
     reply_stream: function () {
         return replies.find({ issueId: this._id });
     },
-    admin: function () {
-        return Roles.userIsInRole(Meteor.user(), ['admin']);
+    // if user is OP or is admin allow to see tools
+    admin : function () {
+      let user = Meteor.userId();
+      let post = this.owner;
+
+      if ( user == post || Roles.userIsInRole(Meteor.user(), ['admin']) ) {
+        return true;
+      }
+
+      else {
+        return false;
+      }
+      return false;
     }
 })
 
@@ -83,13 +94,19 @@ Template.issue_detail.events({
             content: content
         });
 
-        // notify owner
-        let op_owner = this.owner;
-        notifications.insert({
-            forId: op_owner,
-            issueId: issueId,
-            message: name + " has replied to your post."
-        });
+        if ( content.length <= 0 || content === " " ) {
+          console.log("Trying to notify OP for a invalid response.");
+        }
+        else {
+          let op_owner = this.owner;
+          notifications.insert({
+              forId: op_owner,
+              issueId: issueId,
+              message: name + " has replied to your post."
+          });
+        }
+
+        // Reset the reply box
         $('#issue_reply').val("");
     }
 })

@@ -26,7 +26,7 @@
 <template name="issue_detail">
     <section class="section">
         <div class="container">
-            <p style="margin-bottom: 5px;" class="title is-4">{{title}}</p><small>{{name}}&nbsp;{{#if admin}}<span class="tag is-danger is-rounded">Admin</span>&nbsp;{{/if}}/&nbsp;{{date}}&nbsp;/&nbsp;<span class="tag">{{ status }}</span></small>
+            <p style="margin-bottom: 5px;" class="title is-4">{{title}}</p><small>{{name}}/&nbsp;{{date}}&nbsp;/&nbsp;<span class="tag">{{ status }}</span></small>
             <hr />
             <div class="content">
                 {{#markdown}}{{content}}{{/markdown}}
@@ -70,7 +70,7 @@
                     <div class="media-content">
                         <div class="content">
                             <p>
-                                <strong>{{ name }}</strong>{{#if admin}} <span class="tag is-danger is-rounded">Admin</span>{{/if}} <small>{{date}}</small>
+                                <strong>{{ name }}</strong> <small>{{date}}</small>
                                 <br>
                                 {{#markdown}}{{content}}{{/markdown}}
                             </p>
