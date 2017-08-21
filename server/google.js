@@ -4,7 +4,7 @@ ServiceConfiguration.configurations.remove({
 ServiceConfiguration.configurations.insert({
     service: "google",
     clientId: "566805030194-g2v61ecdupsfvvilv9ohc41r1i347o3t.apps.googleusercontent.com",
-    loginStyle: "popup",
+    loginStyle: "redirect",
     secret: "0t22asMl12ZDmfqsk8wG7tvl"
 });
 Accounts.validateNewUser(function (user) {
